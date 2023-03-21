@@ -23,7 +23,7 @@ This is a fork of [minegrub-theme](https://github.com/Lxtharia/minegrub-theme) w
 2. Edit GRUB config in `/etc/default/grub`, adding or changing this line:
 
     ```sh
-    GRUB_THEME=/boot/grub/themes/minegrub-theme/theme.txt
+    GRUB_THEME=/boot/grub/themes/nomifactory-grub-theme/theme.txt
     ```
 
     > Use `/boot/grub2/` above if your OS has it instead of `/boot/grub/`
