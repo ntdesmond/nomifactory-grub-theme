@@ -12,63 +12,60 @@ terminal-height: "80%"
 terminal-box: "term_*.png"
 terminal-font: "Monocraft Regular 22"
 
-# Text White 
-+ boot_menu {
-	# as we don't have any pixmaps here, it gets aligned strangely
-	# top pixmap is 17px in height 
-	# left pixmap is 6px in width 
-	# the text needs to be 3 pixels above and 3 pixels to the left
-	left = 12+3 
-	top = 40%+14
-	width = 600
-	height = 500
-
-	item_font = "Minecraft Regular 30"
-	item_color = "#ffffff"
-	selected_item_color = "#ffffa0"
-	item_height = 34
-	item_padding = 0
-	item_spacing = 38
-	scrollbar = false
-}
-
-
-+ boot_menu {
++ vbox {
 	left = 12
 	top = 40%
-	width = 600
-	height = 500
 
-	item_font = "Minecraft Regular 30"
-	item_color = "#383838"
-	selected_item_color = "#3f3f28"
-	item_height = 34
-	item_padding = 0
-	item_spacing = 38
-	item_pixmap_style = "item_*.png"
-	selected_item_pixmap_style = "selected_item_*.png"
-	scrollbar = false
-}
+	# Boot menu entries
+	+ canvas {
+		width = 600
+		# height here is 72 * (boot options count)
+		height = 216
 
+		# White text
+		+ boot_menu {
+			# as we don't have any pixmaps here, it gets aligned strangely
+			# top pixmap is 17px in height 
+			# left pixmap is 6px in width 
+			# the text needs to be 3 pixels above and 3 pixels to the left
+			left = 6-3
+			top = 17-3
+			width = 100%
 
+			item_font = "Minecraft Regular 30"
+			item_color = "#ffffff"
+			selected_item_color = "#ffffa0"
+			item_height = 34
+			item_padding = 0
+			item_spacing = 38
+			scrollbar = false
+		}
 
-+ image {
-	left = 12
+		# Shadow and pixmap
+		+ boot_menu {
+			left = 0
+			top = 0
+			width = 100%
+			
+			item_font = "Minecraft Regular 30"
+			item_color = "#383838"
+			selected_item_color = "#3f3f28"
+			item_height = 34
+			item_padding = 0
+			item_spacing = 38
+			item_pixmap_style = "item_*.png"
+			selected_item_pixmap_style = "selected_item_*.png"
+			scrollbar = false
+		}
+	}	
 
-	# n is amount of boot options (each element is (42 height + 30 spacing) = 72px in height) 
-	# top = 40%+( 72 * N + 26 )
-	#
-	### + 170 (for 2 boot options)
-	### + 242 (for 3 boot options)
-	### + 314 (for 4 boot options)
-	### + 386 (for 5 boot options)
-	### + 458 (for 6 boot options)
-	### + 530 (for 7 boot options)
-	############### CHANGE VALUE HERE ################
-	top = 40%+314
-	##################################################
+	# Empty canvas just for padding
+	+ canvas { height = 72 }
 
-	file = "static_bar.png"
+	# Static image below boot menu
+	+ image {
+		file = "static_bar.png"
+	}
 }
 
 + image {
