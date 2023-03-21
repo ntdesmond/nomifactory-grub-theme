@@ -82,11 +82,11 @@ terminal-font: "Monocraft Regular 22"
 # TEXT 
 + label {	
 	left = 6
-	top = 100%-61
+	top = 100%-31
 	height = 54
 	width = 200
 
-	text = "Minegrub 1.0.0"
+	text = "Nomifactory-grub 1.0.0"
 	font = "Minecraft Regular 30"
 	color = "white"
 }
@@ -94,35 +94,11 @@ terminal-font: "Monocraft Regular 22"
 # SHADOW 
 + label {
 	left = 9
-	top = 100%-58
-	height = 54
-	width = 200
-
-	text = "Minegrub 1.0.0"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
-}
-
-# TEXT
-+ label {	
-	left = 6
-	top = 100%-31
-	height = 54
-	width = 200
-
-	text = "647 Packages Installed"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW
-+ label {
-	left = 9
 	top = 100%-28
 	height = 54
 	width = 200
 
-	text = "647 Packages Installed"
+	text = "Nomifactory-grub 1.0.0"
 	font = "Minecraft Regular 30"
 	color = "#3f3f3f"
 }
@@ -136,7 +112,7 @@ terminal-font: "Monocraft Regular 22"
 	height = 24
 	width = 50%-6	
 	
-	text = "Joining world in %d seconds"
+	text = "Booting in %d seconds"
 	align = "right"
 	font = "Minecraft Regular 30"
 	color = "white"
@@ -151,7 +127,7 @@ terminal-font: "Monocraft Regular 22"
 	height = 24
 	width = 50%-6
 
-	text = "Joining world in %d seconds"
+	text = "Booting in %d seconds"
 	align = "right"
 	font = "Minecraft Regular 30"
 	color = "#3f3f3f"
