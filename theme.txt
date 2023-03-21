@@ -12,6 +12,15 @@ terminal-height: "80%"
 terminal-box: "term_*.png"
 terminal-font: "Monocraft Regular 22"
 
+# Logo at the top
++ image {
+	# 50% - (width / 2) 
+	left = 50%-540
+	top = 0
+	file = "logo.png"	
+}
+
+# Main menu area
 + vbox {
 	left = 12
 	top = 40%
@@ -68,65 +77,97 @@ terminal-font: "Monocraft Regular 22"
 	}
 }
 
-+ image {
-	# 50% - (width / 2) 
-	left = 50%-540
-	top = 0
-	file = "logo.png"	
-}
 
-# TEXT 
-+ label {	
+# Left bottom corner texts
+# Each nested canvas is a line of text with shadow
+# p.s. vbox didn't work here as it prevented setting nested canvas width
++ canvas {
 	left = 6
-	top = 100%-31
-	height = 54
-	width = 200
-
-	text = "Nomifactory-grub 1.0.0"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW 
-+ label {
-	left = 9
-	top = 100%-28
-	height = 54
-	width = 200
-
-	text = "Nomifactory-grub 1.0.0"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
-}
-
-# TEXT 
-+ label {
-	id = "__timeout__"
-	
-	left = 50%
-	top = 100%-31
-	height = 24
-	width = 50%-6	
-	
-	text = "Booting in %d seconds"
-	align = "right"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW 
-+ label {
-	id = "__timeout__"
-
-	left = 50%+3
-	top = 100%-28
-	height = 24
 	width = 50%-6
+	
+	# height is 30 * line count
+	height = 30
+	
+	# top is (100% - height)
+	top = 100%-30
 
-	text = "Booting in %d seconds"
-	align = "right"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
+	# Theme name
+	+ canvas {
+		width = 100%
+		height = 30
+
+		# Text 
+		+ label {
+			height = 100%
+			width = 100%
+
+			text = "Nomifactory-grub 1.0.0"
+			font = "Minecraft Regular 30"
+			color = "white"
+		}
+
+		# Shadow 
+		+ label {
+			left = 3
+			top = 3
+			height = 100%
+			width = 100%
+
+			text = "Nomifactory-grub 1.0.0"
+			font = "Minecraft Regular 30"
+			color = "#3f3f3f"
+		}
+	}
+
+	# Additional lines of text will have to set top to 30 * (lines before this one)
+}
+
+
+# Right bottom corner texts
+# Note that texts inside are right-aligned
++ canvas {
+	left = 50%
+	width = 50%-6
+	
+	# height is 30 * line count
+	height = 30
+	
+	# top is (100% - height)
+	top = 100%-30
+
+	# Boot timeout
+	+ canvas {
+		width = 100%
+		height = 30
+
+		# Text 
+		+ label {
+			id = "__timeout__"
+			
+			height = 100%
+			width = 100%
+			
+			text = "Booting in %d seconds"
+			align = "right"
+			font = "Minecraft Regular 30"
+			color = "white"
+		}
+
+		# Shadow 
+		+ label {
+			id = "__timeout__"
+
+			left = 3
+			top = 3
+			height = 100%
+			width = 100%
+
+			text = "Booting in %d seconds"
+			align = "right"
+			font = "Minecraft Regular 30"
+			color = "#3f3f3f"
+		}
+	}
 }
 
 
