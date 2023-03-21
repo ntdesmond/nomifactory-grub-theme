@@ -21,58 +21,56 @@ terminal-font: "Monocraft Regular 22"
 }
 
 # Main menu area
-+ vbox {
++ canvas {	
 	left = 12
-	top = 40%
+	width = 600
 
-	# Boot menu entries
-	+ canvas {
-		width = 600
-		# height here is 72 * (boot options count)
-		height = 216
+	# The math behind this is tough, it sets boot_menu top to 40% of the screen
+	# It is required to keep highlighting entries working
+	height = 80%
 
-		# White text
-		+ boot_menu {
-			# as we don't have any pixmaps here, it gets aligned strangely
-			# top pixmap is 17px in height 
-			# left pixmap is 6px in width 
-			# the text needs to be 3 pixels above and 3 pixels to the left
-			left = 6-3
-			top = 17-3
-			width = 100%
+	# White text of boot menu entries
+	+ boot_menu {
+		# as we don't have any pixmaps here, it gets aligned strangely
+		# top pixmap is 17px in height 
+		# left pixmap is 6px in width 
+		# the text needs to be 3 pixels above and 3 pixels to the left
+		left = 6-3
+		top = 50%+17-3
+		width = 100%
+		height = 100%
 
-			item_font = "Minecraft Regular 30"
-			item_color = "#ffffff"
-			selected_item_color = "#ffffa0"
-			item_height = 34
-			item_padding = 0
-			item_spacing = 38
-			scrollbar = false
-		}
+		item_font = "Minecraft Regular 30"
+		item_color = "#ffffff"
+		selected_item_color = "#ffffa0"
+		item_height = 34
+		item_padding = 0
+		item_spacing = 38
+		scrollbar = false
+	}
 
-		# Shadow and pixmap
-		+ boot_menu {
-			left = 0
-			top = 0
-			width = 100%
-			
-			item_font = "Minecraft Regular 30"
-			item_color = "#383838"
-			selected_item_color = "#3f3f28"
-			item_height = 34
-			item_padding = 0
-			item_spacing = 38
-			item_pixmap_style = "item_*.png"
-			selected_item_pixmap_style = "selected_item_*.png"
-			scrollbar = false
-		}
-	}	
-
-	# Empty canvas just for padding
-	+ canvas { height = 72 }
+	# Text shadow and pixmaps
+	+ boot_menu {
+		left = 0
+		top = 50%
+		width = 100%
+		height = 100%
+		
+		item_font = "Minecraft Regular 30"
+		item_color = "#383838"
+		selected_item_color = "#3f3f28"
+		item_height = 34
+		item_padding = 0
+		item_spacing = 38
+		item_pixmap_style = "item_*.png"
+		selected_item_pixmap_style = "selected_item_*.png"
+		scrollbar = false
+	}
 
 	# Static image below boot menu
 	+ image {
+		# top should be at least 50% + (72 * number of boot entries) 
+		top = 50%+288
 		file = "static_bar.png"
 	}
 }
