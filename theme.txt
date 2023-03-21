@@ -12,149 +12,160 @@ terminal-height: "80%"
 terminal-box: "term_*.png"
 terminal-font: "Monocraft Regular 22"
 
-# Text White 
-+ boot_menu {
-	# as we don't have any pixmaps here, it gets aligned strangely
-	# top pixmap is 17px in height 
-	# left pixmap is 6px in width 
-	# the text needs to be 3 pixels above and 3 pixels to the left
-	left = 50%-297 
-	top = 40%+14
-	width = 600
-	height = 500
-
-	item_font = "Minecraft Regular 30"
-	item_color = "#ffffff"
-	selected_item_color = "#ffffa0"
-	item_height = 34
-	item_padding = 0
-	item_spacing = 38
-	scrollbar = false
-}
-
-
-+ boot_menu {
-	left = 50%-300
-	top = 40%
-	width = 600
-	height = 500
-
-	item_font = "Minecraft Regular 30"
-	item_color = "#383838"
-	selected_item_color = "#3f3f28"
-	item_height = 34
-	item_padding = 0
-	item_spacing = 38
-	item_pixmap_style = "item_*.png"
-	selected_item_pixmap_style = "selected_item_*.png"
-	scrollbar = false
-}
-
-
-
+# Logo at the top
 + image {
-	# width of the static bottom bar image is 744
-	left = 50%-372
-
-	# n is amount of boot options (each element is (42 height + 30 spacing) = 72px in height) 
-	# top = 40%+( 72 * N + 26 )
-	#
-	### + 170 (for 2 boot options)
-	### + 242 (for 3 boot options)
-	### + 314 (for 4 boot options)
-	### + 386 (for 5 boot options)
-	### + 458 (for 6 boot options)
-	### + 530 (for 7 boot options)
-	############### CHANGE VALUE HERE ################
-	top = 40%+314
-	##################################################
-
-	file = "static_bar.png"
-}
-
-+ image {
-	# width of the logo image is 1200, but the center of the logo is at x=400
-	left = 50%-400
+	# 50% - (width / 2) 
+	left = 50%-540
 	top = 0
 	file = "logo.png"	
 }
 
-# TEXT 
-+ label {	
+# Main menu area
++ canvas {	
+	left = 12
+	width = 600
+
+	# The math behind this is tough, it sets boot_menu top to 40% of the screen
+	# It is required to keep highlighting entries working
+	height = 80%
+
+	# White text of boot menu entries
+	+ boot_menu {
+		# as we don't have any pixmaps here, it gets aligned strangely
+		# top pixmap is 17px in height 
+		# left pixmap is 6px in width 
+		# the text needs to be 3 pixels above and 3 pixels to the left
+		left = 6-3
+		top = 50%+17-3
+		width = 100%
+		height = 100%
+
+		item_font = "Minecraft Regular 30"
+		item_color = "#ffffff"
+		selected_item_color = "#ffffa0"
+		item_height = 34
+		item_padding = 0
+		item_spacing = 38
+		scrollbar = false
+	}
+
+	# Text shadow and pixmaps
+	+ boot_menu {
+		left = 0
+		top = 50%
+		width = 100%
+		height = 100%
+		
+		item_font = "Minecraft Regular 30"
+		item_color = "#383838"
+		selected_item_color = "#3f3f28"
+		item_height = 34
+		item_padding = 0
+		item_spacing = 38
+		item_pixmap_style = "item_*.png"
+		selected_item_pixmap_style = "selected_item_*.png"
+		scrollbar = false
+	}
+
+	# Static image below boot menu
+	+ image {
+		# top should be at least 50% + (72 * number of boot entries) 
+		top = 50%+288
+		file = "static_bar.png"
+	}
+}
+
+
+# Left bottom corner texts
+# Each nested canvas is a line of text with shadow
+# p.s. vbox didn't work here as it prevented setting nested canvas width
++ canvas {
 	left = 6
-	top = 100%-61
-	height = 54
-	width = 200
-
-	text = "Minegrub 1.0.0"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW 
-+ label {
-	left = 9
-	top = 100%-58
-	height = 54
-	width = 200
-
-	text = "Minegrub 1.0.0"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
-}
-
-# TEXT
-+ label {	
-	left = 6
-	top = 100%-31
-	height = 54
-	width = 200
-
-	text = "647 Packages Installed"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW
-+ label {
-	left = 9
-	top = 100%-28
-	height = 54
-	width = 200
-
-	text = "647 Packages Installed"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
-}
-
-# TEXT 
-+ label {
-	id = "__timeout__"
-	
-	left = 50%
-	top = 100%-31
-	height = 24
-	width = 50%-6	
-	
-	text = "Joining world in %d seconds"
-	align = "right"
-	font = "Minecraft Regular 30"
-	color = "white"
-}
-
-# SHADOW 
-+ label {
-	id = "__timeout__"
-
-	left = 50%+3
-	top = 100%-28
-	height = 24
 	width = 50%-6
+	
+	# height is 30 * line count
+	height = 30
+	
+	# top is (100% - height)
+	top = 100%-30
 
-	text = "Joining world in %d seconds"
-	align = "right"
-	font = "Minecraft Regular 30"
-	color = "#3f3f3f"
+	# Theme name
+	+ canvas {
+		width = 100%
+		height = 30
+
+		# Text 
+		+ label {
+			height = 100%
+			width = 100%
+
+			text = "Nomifactory-grub 1.0.0"
+			font = "Minecraft Regular 30"
+			color = "white"
+		}
+
+		# Shadow 
+		+ label {
+			left = 3
+			top = 3
+			height = 100%
+			width = 100%
+
+			text = "Nomifactory-grub 1.0.0"
+			font = "Minecraft Regular 30"
+			color = "#3f3f3f"
+		}
+	}
+
+	# Additional lines of text will have to set top to 30 * (lines before this one)
+}
+
+
+# Right bottom corner texts
+# Note that texts inside are right-aligned
++ canvas {
+	left = 50%
+	width = 50%-6
+	
+	# height is 30 * line count
+	height = 30
+	
+	# top is (100% - height)
+	top = 100%-30
+
+	# Boot timeout
+	+ canvas {
+		width = 100%
+		height = 30
+
+		# Text 
+		+ label {
+			id = "__timeout__"
+			
+			height = 100%
+			width = 100%
+			
+			text = "Booting in %d seconds"
+			align = "right"
+			font = "Minecraft Regular 30"
+			color = "white"
+		}
+
+		# Shadow 
+		+ label {
+			id = "__timeout__"
+
+			left = 3
+			top = 3
+			height = 100%
+			width = 100%
+
+			text = "Booting in %d seconds"
+			align = "right"
+			font = "Minecraft Regular 30"
+			color = "#3f3f3f"
+		}
+	}
 }
 
 

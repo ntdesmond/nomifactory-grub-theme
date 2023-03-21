@@ -1,39 +1,47 @@
-# minegrub-theme
-A Grub Theme in the style of Minecraft!
+# Nomifactory GRUB theme
 
+This is a fork of [minegrub-theme](https://github.com/Lxtharia/minegrub-theme) with a design based on [Nomifactory CEu](https://github.com/tracer4b/nomi-ceu) modpack menu.
 
-![Minegrub Preview "Screenshot"](resources/preview_minegrub.png)
+![Screenshot](resources/screenshot.png)
 
-### How do i install it??
-- `cd /boot/grub2/themes/` and do `git clone https://github.com/Lxtharia/minegrub-theme.git` 
-- change/add this line in your `/etc/default/grub`:
-```
-GRUB_THEME=/boot/grub2/themes/minegrub-theme/theme.txt
-```
-- update your live grub config by running `sudo grub-mkconfig -o /boot/grub2/grub.cfg`
-- your good to go
+## Installation
 
-### Cycling through the splash texts
-There are 20 alternative splash texts that can be automatically cycled through with a script:
+<!-- markdownlint-disable-next-line MD029 -->
+0. Give yourself permission to access themes folder, if not yet:
 
-- Make the script executable with `chmod +x ./Cycle/Cycler.sh`
-- Ensure you're set as the owner of the theme folder. Take ownership if not, with `sudo chown *USERNAME* ./`
-- Set the script to always run on startup with `crontab -e` and add `@reboot /boot/grub2/themes/minegrub-theme/Cycle/Cycler.sh` to the bottom of the list.
+    ```sh
+    sudo chown $USER /boot/grub*/themes/
+    ```
 
-### Important Notes:
-- When you have more/less than 4 boot options, you might want to adjust the height of the bottom bar (that says "Options" and "Console")
-- The formula is in the theme.txt, so you should be able to easily adjust it.
+1. Clone the repository:
 
-### Notes:
-- your grub folder might not be called `/boot/grub2/` but only `/boot/grub/`, in any case, grub should be version 2
-- the `GRUB_TIMEOUT_STYLE` in the defaults/grub file should be set to `menu` so it immediately shows the menu (else you would need to press ESC and you dont want that)
-- im no linux expert, thats why i explain it so thoroughly, for other newbies :>
-- i use arch btw
-- i hope u like it, cause i sure do lmao
+    ```sh
+    cd /boot/grub*/themes/
+    git clone https://github.com/ntdesmond/nomifactory-grub-theme
+    ```
 
-#### Thanks to
-- https://github.com/toboot for giving me this wonderful idea!
-- the internet for giving me wisdom lmao
+2. Edit GRUB config in `/etc/default/grub`, adding or changing this line:
 
+    ```sh
+    GRUB_THEME=/boot/grub/themes/minegrub-theme/theme.txt
+    ```
 
-Font downloaded from https://www.fontspace.com/minecraft-font-f28180 and used for non commercial use.
+    > Use `/boot/grub2/` above if your OS has it instead of `/boot/grub/`
+
+3. Run `sudo update-grub` to upgrade your GRUB config.
+
+4. You might need to edit [theme.txt](./theme.txt#L72) to adjust the height of the boot menu if you have more than 3 or 4 boot options.
+
+    > Editing theme files does not require updating grub config.
+    >
+    > To preview theme changes without rebooting, you may use `grub-emu`.
+    >
+    > Caution: `grub-emu` reads keyboard when the terminal it was launched in is focused. To exit `grub-emu`, hit `C` and type `exit` in the GRUB command line.
+
+5. (optional) Pick a background of your choice and replace `background.png` or enable switching backgrounds automatically after each system reboot. See README in [`./backgrounds`](./backgrounds) for more info.
+
+## See also
+
+- Original [minegrub-theme](https://github.com/Lxtharia/minegrub-theme)
+- [Nomifactory CEu](https://github.com/tracer4b/nomi-ceu) and original [Nomifactory](https://github.com/Nomifactory/Nomifactory) Minecraft modpacks
+- Minecraft font on [FontSpace](https://www.fontspace.com/minecraft-font-f28180)
